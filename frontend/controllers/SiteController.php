@@ -15,6 +15,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Siswa;
+use common\models\SiswaLogin;
 
 /**
  * Site controller
@@ -29,7 +30,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'index', 'contact', 'about'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -37,7 +38,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'index', 'contact', 'about'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -90,20 +91,23 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post())) {
-            $siswa = Siswa::find()->where(['nisn' => Yii::$app->request->post('LoginForm')['nisn']]);
+        if (Yii::$app->request->post()) {
 
-            // if($siswa) {
-            //     $check = Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('LoginForm')['password'], $siswa['password']);
-            //     var_dump($siswa);
-            //     if($check) {
-            //         return $this->redirect('index.php?r=site%index');
-            //     }
-                
-            // }
-            return $this->render('index', [
-                'model' => $model,
-            ]);
+            $check = Siswa::find()->where(['nisn' => Yii::$app->request->post("LoginForm")['nisn']])->one();
+
+            if($check && Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('LoginForm')['password'], $check['password'])) {
+
+                $model->login((new SiswaLogin)->findByNISN($check['nisn']));
+
+                return $this->redirect(['site/index']);
+            } else {
+                Yii::$app->session->setFlash('danger', 'NISN Or Password Are Wrong.');
+
+                return $this->render('login', [
+                    'model' => $model,
+                ]);
+            }
+
         } else {
             $model->password = '';
 
@@ -165,23 +169,30 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
-        $student = new Siswa;
-        if ($student->load(Yii::$app->request->post())) {
-            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
-           
+        $model = new Siswa;
+        if (Yii::$app->request->post()) {
+
+            Yii::$app->session->setFlash('success', 'Thank you for registration');
+            $student = new Siswa;
+
             $student->nisn = Yii::$app->request->post('Siswa')['nisn'];
             $student->nis = Yii::$app->request->post('Siswa')['nis'];
             $student->nama = Yii::$app->request->post('Siswa')['nama'];
+            $student->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('Siswa')['password']);
+            $student->id_kelas = Yii::$app->request->post('Siswa')['id_kelas'];
+            $student->id_jurusan = Yii::$app->request->post('Siswa')['id_jurusan'];
             $student->alamat = Yii::$app->request->post('Siswa')['alamat'];
             $student->no_telp = Yii::$app->request->post('Siswa')['no_telp'];
-            $student->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('Siswa')['password']);
             $student->save();
-            return $this->redirect('index.php?r=site%2Flogin');
-        }
 
-        return $this->render('signup', [
-            'model' => $student,
-        ]);
+            return $this->redirect(["site/login"]);
+
+        } else {
+            return $this->render('signup', [
+                'model' => $model,
+            ]);
+        }
+        
     }
 
     /**

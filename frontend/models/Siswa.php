@@ -7,17 +7,19 @@ use Yii;
 /**
  * This is the model class for table "siswa".
  *
- * @property string $nisn
- * @property string $nis
+ * @property int $nisn
+ * @property int $nis
  * @property string $nama
  * @property int $id_kelas
  * @property string $alamat
- * @property string $no_telp
- * @property int $id_spp
- * @property string $password
+ * @property int|null $no_telp
+ * @property int|null $id_spp
  */
 class Siswa extends \yii\db\ActiveRecord
 {
+
+    public $password_repeat;
+
     /**
      * {@inheritdoc}
      */
@@ -32,14 +34,11 @@ class Siswa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nisn', 'nis', 'nama', 'alamat', 'no_telp', 'password'], 'required'],
-            [['id_kelas'], 'integer'],
-            [['alamat'], 'string'],
-            // [['nisn'], 'string', 'max' => 10],
-            [['nis'], 'string', 'max' => 8],
-            [['nama'], 'string', 'max' => 35],
-            [['no_telp'], 'string', 'max' => 13],
-            [['nisn'], 'unique'],
+            [['nisn', 'nis', 'nama', 'id_kelas', 'id_kelas', 'alamat', 'password'], 'required'],
+            [['nisn', 'nis'], 'number'],
+            [['nisn', 'nis', 'id_kelas', 'id_jurusan', 'no_telp'], 'integer'],
+            [['nama', 'alamat'], 'string'],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password']
         ];
     }
 
@@ -56,7 +55,15 @@ class Siswa extends \yii\db\ActiveRecord
             'alamat' => 'Alamat',
             'no_telp' => 'No Telp',
             'id_spp' => 'Id Spp',
-            'password' => 'Password',
         ];
+    }
+
+    public function login($data = [])
+    {
+        if ($this->validate()) {
+            return Yii::$app->user->login($data, $this->rememberMe ? 3600 * 24 * 30 : 0);
+        }
+        
+        return false;
     }
 }
