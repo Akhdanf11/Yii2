@@ -12,6 +12,8 @@ use Yii;
  */
 class Kelas extends \yii\db\ActiveRecord
 {
+
+    // public $id;
     /**
      * {@inheritdoc}
      */

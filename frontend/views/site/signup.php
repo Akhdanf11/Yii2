@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="col-lg-6">  
             <div class="row">
-                
+                 
                 <div class="col-lg-6">
                     <b>Kelas</b>
                     <?= Html::activeDropDownList(new Kelas, 'id', ArrayHelper::map(Kelas::find()->all(), 'id', 'nama'), ['name' => "Siswa[id_kelas]", 'class' => 'form-control']) ?>

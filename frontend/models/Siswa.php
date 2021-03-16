@@ -35,9 +35,9 @@ class Siswa extends \yii\db\ActiveRecord
     {
         return [
             [['nisn', 'nis', 'nama', 'id_kelas', 'id_kelas', 'alamat', 'password'], 'required'],
-            [['nisn', 'nis'], 'number'],
-            [['nisn', 'nis', 'id_kelas', 'id_jurusan', 'no_telp'], 'integer'],
-            [['nama', 'alamat'], 'string'],
+            [['nisn'], 'number'],
+            [['nisn', 'id_kelas', 'id_jurusan', 'no_telp'], 'integer'],
+            [['nama','nis', 'alamat'], 'string'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password']
         ];
     }

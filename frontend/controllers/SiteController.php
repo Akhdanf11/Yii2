@@ -1,9 +1,10 @@
 <?php
 namespace frontend\controllers;
 
+
+use Yii;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
-use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -12,9 +13,11 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
+use frontend\models\Skills;
 use frontend\models\ContactForm;
+use frontend\models\Personal;
 use frontend\models\Siswa;
+use frontend\models\Classes;
 use common\models\SiswaLogin;
 
 /**
@@ -86,6 +89,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = "maintwo";
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -129,6 +134,36 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    public function actionProfil()
+    {
+        if (Yii::$app->request->post()) {
+            $data = Siswa::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+            $data->nama = Yii::$app->request->post('Info')['nama'];
+            $data->nis = Yii::$app->request->post('Info')['nis'];
+            $data->id_kelas = Yii::$app->request->post('Classes')['id'];
+            $data->id_skill = Yii::$app->request->post('Skill')['id'];
+            $data->alamat = Yii::$app->request->post('Info')['alamat'];
+            $data->no_telp = Yii::$app->request->post('Info')['no_telp'];
+            $data->save();
+            Yii::$app->session->setFlash('success', 'Profil Telah Diperbarui');
+        }
+
+        $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+        $myClass = Classes::find()->where(['id' => $data['id_kelas']])->one();
+        $mySkill = Skills::find()->where(['id' => $data['id_skill']])->one();
+        $class = Classes::find()->all();
+        $skill = Skills::find()->all();
+
+        return $this->render('profile', [
+            'data' => $data,
+            'class' => $class,
+            'skill' => $skill,
+            'mySkill' => $mySkill,
+            'myClass' => $myClass,
+        ]);
+
+    }
+
     /**
      * Displays contact page.
      *
@@ -170,6 +205,7 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new Siswa;
+        $this->layout = "maintwo";
         if (Yii::$app->request->post()) {
 
             Yii::$app->session->setFlash('success', 'Thank you for registration');
