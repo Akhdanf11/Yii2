@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="col-lg-6">
             
-                <?= $form->field($model, 'nisn')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'nisn')->textInput(['autofocus' => true, 'autocomplete' => 'off']) ?>
 
                 <?= $form->field($model, 'nis')->textInput() ?>
 

@@ -9,7 +9,6 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\SignAsset;
 use common\widgets\Alert;
-use yii\helpers\Url;
 
 SignAsset::register($this);
 ?>
@@ -24,7 +23,7 @@ SignAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body style="background-image: url('img/Login_UKK.png');">
+<body style="background-image: url("/img/Login_UKK");">
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -72,7 +71,6 @@ SignAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-        
         <?= $content ?>
     </div>
 </div>
