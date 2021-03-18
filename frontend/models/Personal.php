@@ -22,6 +22,7 @@ class Personal extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $id_skill;
     public static function tableName()
     {
         return 'siswa';

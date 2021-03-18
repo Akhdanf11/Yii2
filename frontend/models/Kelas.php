@@ -17,6 +17,7 @@ class Kelas extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    
     public static function tableName()
     {
         return 'kelas';

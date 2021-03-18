@@ -51,48 +51,60 @@ AppAsset::register($this);
                     <small class="bio-data"></small>
                     <?php $form = ActiveForm::begin(['id' => 'bio-form']); ?>
                     <h2>
-                        <span class="bio-data"><?= $data['nama'] ?></span>
-                        <?= $form->field($data, 'nama')->textInput(['class' =>  'biodata-form form-control'])->label(false); ?>
+                        <span class="bio-data justify-content-between"><?= $data['nama'] ?></span>
+                        
                     </h2>
                     <hr>
                     <div class="bio">
                         <div class="row">
-                            <div class="col-6">
-
-                                <div class="mb-1 font-weight-bold">NISN</div>
+                        <div class="col-3">
+                        <div class="mb-1 font-weight-bold">NISN</div>
                                     <small class="bio-data">
                                         - <?= $data['nisn'] != "" ? $data['nisn'] : "Belum di Isi" ?>
                                     </small>
                                         <?= $form->field($data, 'nisn')->textInput(['class' =>  'biodata-form form-control','readonly' => 'true', 'disabled' => 'true'])->label(false); ?>
-                                
+                        </div>
+                            <div class="col-3">                                                                     
                                 <div class="mb-1 font-weight-bold">NIS</div>
                                     <small class="bio-data">
                                         - <?= $data['nis'] != "" ? $data['nis'] : "Belum di Isi" ?>
                                     </small>
                                         <?= $form->field($data, 'nis')->textInput(['class' =>  'biodata-form form-control','readonly' => 'true', 'disabled' => 'true'])->label(false); ?>
-
+                            </div>
+                            <div class="col-6">
                                 <div class="mb-1 font-weight-bold">Kelas</div>
                                     <small class="bio-data">
                                         - <?= $myClass['kelas'] != "" ? $myClass['kelas'] . "" . $mySkill['alias'] : "belum di Isi" ?>
                                     </small>
+
                                         <div class="row">
                                             <div class="col-3">
-                                                <?= Html::activeDropDownList(new Classes, 'id', ArrayHelper::map(Classes::find()->all(), 'id', 'class'), ['class' => "form-control biodata-form", 'options' => [$data['id_kelas'] => ['selected' => 'selected']]]) ?>
+                                                <?= Html::activeDropDownList(new Classes, 'id', ArrayHelper::map(Classes::find()->all(), 'id', 'nama'), ['class' => "form-control biodata-form", 'options' => [$data['id_kelas'] => ['selected' => 'selected']]]) ?>
                                             </div>
                                             <div class="col-9">
-                                                <?= Html::activeDropDownList(new Skills, 'id', ArrayHelper::map(Skills::find()->all(), 'id', 'skill'), ['class' => "form-control biodata-form", 'options' => [$data['id_skill'] => ['selected' => 'selected']]]) ?>
+                                                <?= Html::activeDropDownList(new Skills, 'id', ArrayHelper::map(Skills::find()->all(), 'id', 'nama'), ['class' => "form-control biodata-form", 'options' => [$data['id_skill'] => ['selected' => 'selected']]]) ?>
                                             </div>
                                         </div>
-
-                                <div class="mb-1 font-weight-bold mt-4">Nomor Telepon</div>
+                            </div>
+                            <div class="col-6">
+                            <div class="mb-1 font-weight-bold">Nama</div>
+                                    <small class="bio-data">
+                                    - <?= $data['nama'] != "" ? $data['nama'] : "Belum di Isi" ?>
+                                    </small>
+                                    <?= $form->field($data, 'nama')->textInput(['class' =>  'biodata-form form-control'])->label(false); ?>
+                                
+                            </div>
+                            <div class="col-6">
+                            <div class="mb-1 font-weight-bold">Nomor Telepon</div>
                                     <small class="bio-data">
                                         - <?= $data['no_telp'] != "" ? $data['no_telp'] : "Belum di Isi" ?>
                                     </small>
                                         <?= $form->field($data, 'no_telp')->textInput(['class' =>  'biodata-form form-control', 'id' => 'tel'])->label(false); ?>
                             </div>
 
+
                             <div class="col-12">
-                                <div class="mb-1 font-weight-bold mt-4">Alamat</div>
+                                <div class="mb-1 font-weight-bold mt-2">Alamat</div>
                                         <small class="bio-data">
                                             - <?= $data['alamat'] != "" ? $data['alamat'] : "Belum di Isi" ?>
                                         </small>
@@ -101,7 +113,6 @@ AppAsset::register($this);
                                 <button class="btn btn-danger mt-3" id="cancel-update">i.f mr-2as.<i class="fa fa-times mr-4 mt-3"></i>Batal</button>
                                 <button class="btn btn-success mt-3" id="do-update">i.f mr-2as.<i class="fa fa-wrench mr-2"></i>Ubah</button>
                             </div>
-                        </div>
                     </div>
                     <?php $form = ActiveForm::end(); ?>
 
