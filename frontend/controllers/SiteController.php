@@ -154,7 +154,7 @@ class SiteController extends Controller
         $class = Classes::find()->all();
         $skill = Skills::find()->all();
 
-        return $this->render('profile', [
+        return $this->render('profil', [
             'data' => $data,
             'class' => $class,
             'skill' => $skill,

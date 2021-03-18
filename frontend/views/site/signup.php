@@ -14,10 +14,9 @@ use yii\helpers\ArrayHelper;
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to signup:</p>
+<div class="site-signup card-login">
+    <h1 class="text-center"><?= Html::encode($this->title) ?></h1>
+    <hr>
 
     <div class="row">
         <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
@@ -29,12 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'nis')->textInput() ?>
 
                 <?= $form->field($model, 'nama')->textInput() ?>
-
-                <?= $form->field($model, 'no_telp')->textInput() ?>
-
-                <div class="form-group">    
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                </div>
+                
         </div>
 
         <div class="col-lg-6">  
@@ -53,11 +47,33 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             
             <br>
+            <div class="row">
+                <?= $form->field($model, 'no_telp')->textInput() ?>
 
-            <?= $form->field($model, 'alamat')->textInput() ?>
+            </div>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+        </div>
+        <div class="col-lg-12">
+        <?= $form->field($model, 'alamat')->textInput() ?>
+        </div>
 
+        <div class="col-lg-6">
+        
+        <?= $form->field($model, 'password')->passwordInput() ?>
+        <div class="row">
+            <div class="col-lg-3">
+            <div class="form-group">    
+                    <?= Html::submitButton('Signup', ['class' => 'btn btn-success btn-block', 'name' => 'signup-button']) ?>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <input class="btn btn-danger btn-block" type="reset" value="Reset">
+                </div>
+            </div>
+        </div>
+        </div>
+            <div class="col-lg-6">
             <?= $form->field($model, 'password_repeat')->passwordInput() ?>
         </div>
 

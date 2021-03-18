@@ -38,7 +38,21 @@ class Siswa extends \yii\db\ActiveRecord
             [['nisn'], 'number'],
             [['nisn', 'id_kelas', 'id_jurusan', 'no_telp'], 'integer'],
             [['nama','nis', 'alamat'], 'string'],
-            ['password_repeat', 'compare', 'compareAttribute' => 'password']
+            ['password_repeat', 'compare', 'compareAttribute' => 'password'],
+
+            ['nisn', 'required', 'message' => 'NISN Tidak Boleh Kosong'],
+            ['nisn', 'unique', 'targetClass' => '\common\models\SiswaLogin', 'message' => 'NISN Sudah Terdaftar'],
+            ['nisn', 'number', 'message' => 'NISN Harus Angka'],
+            ['nisn', 'string', 'min' => 10, 'max' => 10],
+
+            ['nama', 'required', 'message' => 'Nama Tidak Boleh Kosong'],
+            ['email', 'unique', 'targetClass' => '\common\models\SiswaLogin', 'message' => 'Nama Sudah Terdaftar'],
+
+            ['password', 'required', 'message' => 'Password Tidak Boleh Kosong'],
+            ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+
+            ['repeat_password', 'required', 'message' => 'Repassword Tidak Boleh Kosong'],
+            ['repeat_password', 'compare', 'compareAttribute' => 'password', 'message' => 'Password Tidak Cocok'],
         ];
     }
 

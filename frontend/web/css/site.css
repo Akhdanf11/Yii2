@@ -4,6 +4,13 @@ body {
     
 }
 
+.card-login{
+    margin-top: 5%;
+    background-color:#FFFF;
+    padding:30px;
+    opacity: 85%;
+    border-radius: 25px;
+}
 .wrap {
     min-height: 100%;
     height: auto;
