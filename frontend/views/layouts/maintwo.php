@@ -12,6 +12,7 @@ use common\widgets\Alert;
 use yii\helpers\Url;
 
 SignAsset::register($this);
+['name' => "SPP"]
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,13 +25,13 @@ SignAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body style="background-image: url('img/Login_UKK.png');">
+<body style="background-image: url('img/background.png');">
 <?php $this->beginBody() ?>
 
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => '<img src="img/Tut-Wuri-Handayani.png" alt="logo height="100px" width="40px" style="margin-top: -10px;" ">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -42,16 +43,17 @@ SignAsset::register($this);
     //     ['label' => 'Contact', 'url' => ['/site/contact']],
     // ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItemsleft[] = ['label' => 'SPP'];
+        $menuItemsright[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+        $menuItemsright[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems = [
+        $menuItemsright = [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
         ];
 
-        $menuItems[] = '<li>'
+        $menuImenuItemsrighttems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->nama . ')',
@@ -62,7 +64,11 @@ SignAsset::register($this);
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
+        'items' => $menuItemsright,
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => $menuItemsleft,
     ]);
     NavBar::end();
     ?>
