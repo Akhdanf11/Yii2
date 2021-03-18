@@ -108,7 +108,7 @@ AppAsset::register($this);
                             <input type="text" class="form-control" id="password_2" placeholder="Enter New Password">                                 
                             </div>
                             <div class="col-4">
-                                    <input type="text" class="form-control" id="repeat_password" placeholder="Enter Password">                                 
+                                    <input type="text" class="form-control" id="repeat_password" placeholder="Enter Repassword">                                 
 
                             </div>
                     <?php $form = ActiveForm::end(); ?>
@@ -129,7 +129,7 @@ AppAsset::register($this);
 <!-- End of Page Wrapper -->
 <?php
 
-$this->register('
+$this->registerJs('
     let num = 1;
     $(document).ready(function(){
     $(".action-button").toggle();
