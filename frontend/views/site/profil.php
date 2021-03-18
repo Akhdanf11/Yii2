@@ -101,28 +101,19 @@ AppAsset::register($this);
                 </div>
                 <div id="pass">
                     <?php $form = ActiveForm::begin(['id' => 'pass-form']); ?>
-                    <?php   if($old): ?>
-                    <div class="row">
-                        <div class="col-6">
-                                    <?= $form->field($data, 'password_2')->textInput(['class' =>  'form-control'])?>
-                                    
-                        </div>
-                        <div class="col-6">
-                                <?= $form->field($data, 'repeat_password')->textInput(['class' =>  'form-control'])?>
-                        </div>
-                        <?php else: ?>
                             <div class="col-4">
-                                    <?= $form->field($data, 'password')->textInput(['class' =>  'form-control'])?>
-                                    
+                                <input type="text" class="form-control" id="password" placeholder="Enter Password">                                 
                             </div>
                             <div class="col-4">
-                                    <?= $form->field($data, 'password_2')->textInput(['class' =>  'form-control'])?>                            
+                            <input type="text" class="form-control" id="password_2" placeholder="Enter New Password">                                 
                             </div>
                             <div class="col-4">
-                                    <?= $form->field($data, 'repeat_password')->textInput(['class' =>  'form-control'])?>
+                                    <input type="text" class="form-control" id="repeat_password" placeholder="Enter Password">                                 
+
                             </div>
-                        <?php endif; ?>
+                    <?php $form = ActiveForm::end(); ?>
                         
+
                         <button type="submit" class="btn btn-success mt-3"><i class="fa fa-check mr-2"></i>Simpan</button>
                     </div>
                 </div>
