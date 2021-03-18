@@ -22,12 +22,17 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
         <div class="col-lg-6">
-            
-                <?= $form->field($model, 'nisn')->textInput(['autofocus' => true, 'autocomplete' => 'off']) ?>
-
+            <div class="row">
+            <div class="col-lg-6">
+                <?= $form->field($model, 'nisn')->textInput(['autocomplete' => 'off']) ?>
+                </div>
+                <div class="col-lg-6">
                 <?= $form->field($model, 'nis')->textInput() ?>
+                </div>
 
-                <?= $form->field($model, 'nama')->textInput() ?>
+                
+            </div>
+            <?= $form->field($model, 'nama')->textInput() ?>
                 
         </div>
 
@@ -48,7 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
             
             <br>
             <div class="row">
-                <?= $form->field($model, 'no_telp')->textInput() ?>
+            <div class="col-lg-12">
+            <?= $form->field($model, 'no_telp')->textInput() ?>
+            </div>
+                
 
             </div>
 
