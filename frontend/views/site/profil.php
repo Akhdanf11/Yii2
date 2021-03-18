@@ -129,7 +129,7 @@ AppAsset::register($this);
 <!-- End of Page Wrapper -->
 <?php
 
-$this->signup('
+$this->register('
     let num = 1;
     $(document).ready(function(){
     $(".action-button").toggle();
