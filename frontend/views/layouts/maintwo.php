@@ -24,11 +24,7 @@ SignAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<<<<<<< HEAD
-<body style="background-image: url("/img/Login_UKK");">
-=======
 <body style="background-image: url('img/background.png');">
->>>>>>> 3365d65699280873c14538a2d34481cb4879483f
 <?php $this->beginBody() ?>
 
 <div class="wrap">
