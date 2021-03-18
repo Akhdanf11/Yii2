@@ -137,20 +137,21 @@ class SiteController extends Controller
     public function actionProfil()
     {
         if (Yii::$app->request->post()) {
-            $data = Siswa::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
-            $data->nama = Yii::$app->request->post('Info')['nama'];
-            $data->nis = Yii::$app->request->post('Info')['nis'];
+            $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+
+            $data->nisn = Yii::$app->user->identity->nisn;
+            $data->nama = Yii::$app->request->post('Personal')['nama'];
             $data->id_kelas = Yii::$app->request->post('Classes')['id'];
-            $data->id_skill = Yii::$app->request->post('Skill')['id'];
-            $data->alamat = Yii::$app->request->post('Info')['alamat'];
-            $data->no_telp = Yii::$app->request->post('Info')['no_telp'];
+            $data->id_jurusan = Yii::$app->request->post('Skills')['id'];
+            $data->alamat = Yii::$app->request->post('Personal')['alamat'];
+            $data->no_telp = Yii::$app->request->post('Personal')['no_telp'];
             $data->save();
             Yii::$app->session->setFlash('success', 'Profil Telah Diperbarui');
         }
 
         $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
         $myClass = Classes::find()->where(['id' => $data['id_kelas']])->one();
-        $mySkill = Skills::find()->where(['id' => $data['id_skill']])->one();
+        $mySkill = Skills::find()->where(['id' => $data['id_jurusan']])->one();
         $class = Classes::find()->all();
         $skill = Skills::find()->all();
 

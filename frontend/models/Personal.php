@@ -37,7 +37,7 @@ class Personal extends \yii\db\ActiveRecord
             [['nisn'], 'required'],
             [['nisn', 'id_kelas', 'id_jurusan', 'no_telp', 'id_spp'], 'integer'],
             [['nama', 'password', 'alamat'], 'string'],
-            [['nis'], 'string', 'max' => 11],
+            [['nis'], 'number'],
             [['nisn'], 'unique'],
         ];
     }
