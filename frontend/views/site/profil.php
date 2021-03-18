@@ -59,24 +59,14 @@ AppAsset::register($this);
                         <div class="row">
                         <div class="col-3">
                         <div class="mb-1 font-weight-bold">NISN</div>
-                                    <small class="bio-data">
-                                        - <?= $data['nisn'] != "" ? $data['nisn'] : "Belum di Isi" ?>
-                                    </small>
                                         <?= $form->field($data, 'nisn')->textInput(['class' =>  'biodata-form form-control','readonly' => 'true', 'disabled' => 'true'])->label(false); ?>
                         </div>
                             <div class="col-3">                                                                     
                                 <div class="mb-1 font-weight-bold">NIS</div>
-                                    <small class="bio-data">
-                                        - <?= $data['nis'] != "" ? $data['nis'] : "Belum di Isi" ?>
-                                    </small>
                                         <?= $form->field($data, 'nis')->textInput(['class' =>  'biodata-form form-control','readonly' => 'true', 'disabled' => 'true'])->label(false); ?>
                             </div>
                             <div class="col-6">
                                 <div class="mb-1 font-weight-bold">Kelas</div>
-                                    <small class="bio-data">
-                                        - <?= $myClass['kelas'] != "" ? $myClass['kelas'] . "" . $mySkill['alias'] : "belum di Isi" ?>
-                                    </small>
-
                                         <div class="row">
                                             <div class="col-3">
                                                 <?= Html::activeDropDownList(new Classes, 'id', ArrayHelper::map(Classes::find()->all(), 'id', 'nama'), ['class' => "form-control biodata-form", 'options' => [$data['id_kelas'] => ['selected' => 'selected']]]) ?>
@@ -88,34 +78,53 @@ AppAsset::register($this);
                             </div>
                             <div class="col-6">
                             <div class="mb-1 font-weight-bold">Nama</div>
-                                    <small class="bio-data">
-                                    - <?= $data['nama'] != "" ? $data['nama'] : "Belum di Isi" ?>
-                                    </small>
                                     <?= $form->field($data, 'nama')->textInput(['class' =>  'biodata-form form-control'])->label(false); ?>
                                 
                             </div>
                             <div class="col-6">
                             <div class="mb-1 font-weight-bold">Nomor Telepon</div>
-                                    <small class="bio-data">
-                                        - <?= $data['no_telp'] != "" ? $data['no_telp'] : "Belum di Isi" ?>
-                                    </small>
                                         <?= $form->field($data, 'no_telp')->textInput(['class' =>  'biodata-form form-control', 'id' => 'tel'])->label(false); ?>
                             </div>
 
 
                             <div class="col-12">
                                 <div class="mb-1 font-weight-bold mt-2">Alamat</div>
-                                        <small class="bio-data">
-                                            - <?= $data['alamat'] != "" ? $data['alamat'] : "Belum di Isi" ?>
-                                        </small>
                                             <?= $form->field($data, 'alamat')->textInput(['class' =>  'biodata-form form-control'])->label(false); ?>
-                                <button class="btn btn-warning mt-3" id="update">i.f mr-2as.<i class="fa fa-wrench mr-2"></i>Ubah</button>
-                                <button class="btn btn-danger mt-3" id="cancel-update">i.f mr-2as.<i class="fa fa-times mr-4 mt-3"></i>Batal</button>
-                                <button class="btn btn-success mt-3" id="do-update">i.f mr-2as.<i class="fa fa-wrench mr-2"></i>Ubah</button>
+                                             
+                                <button class="btn btn-warning mt-3" id="update"><i class="fa fa-wrench mr-2"></i>Ubah</button>
+                                <button class="btn btn-danger mt-3" id="cancel-update"><i class="fa fa-times mr-4"></i>Batal</button>
+                                <button class="btn btn-success mt-3" id="do-update"><i class="fa fa-wrench mr-2"></i>Ubah</button>
                             </div>
                     </div>
                     <?php $form = ActiveForm::end(); ?>
 
+                </div>
+                <div id="pass">
+                    <?php $form = ActiveForm::begin(['id' => 'pass-form']); ?>
+                    <?php   if($old): ?>
+                    <div class="row">
+                        <div class="col-6">
+                                    <?= $form->field($data, 'password_2')->textInput(['class' =>  'form-control'])?>
+                                    
+                        </div>
+                        <div class="col-6">
+                                <?= $form->field($data, 'repeat_password')->textInput(['class' =>  'form-control'])?>
+                        </div>
+                        <?php else: ?>
+                            <div class="col-4">
+                                    <?= $form->field($data, 'password')->textInput(['class' =>  'form-control'])?>
+                                    
+                            </div>
+                            <div class="col-4">
+                                    <?= $form->field($data, 'password_2')->textInput(['class' =>  'form-control'])?>                            
+                            </div>
+                            <div class="col-4">
+                                    <?= $form->field($data, 'repeat_password')->textInput(['class' =>  'form-control'])?>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <button type="submit" class="btn btn-success mt-3"><i class="fa fa-check mr-2"></i>Simpan</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,6 +136,68 @@ AppAsset::register($this);
 
 </div>
 <!-- End of Page Wrapper -->
+<?php
+
+$this->signup('
+    let num = 1;
+    $(document).ready(function(){
+    $(".action-button").toggle();
+    $("#pass").toggle();
+    $("$.biodata-form").toggle();
+
+    $("#password-button").click((event) => {
+
+        event.preventDefault();
+        $($password-button").html("");
+        if(num % 2) {
+            let icon document.createElement("i);
+            Icon.setAttribute("class", "fas fa-redo mr-2");
+            let label = document.createElement("span");
+            label.innerHTML = "Kembali";
+
+        document.querySelector ("#password-button").append(icon);
+        document.querySelector("#password-button").append(label);
+
+        }else{
+
+            let icon = document.createElement(i);
+            icon.setAttribute("class", "Fas fa-key mr-2");
+            let label = document.createElement("span");
+            label.innerHTML = "Buat / Ganti Password";
+            
+            document.querySelector ("#password-button").append(icon);
+            document.querySelector("#password-button").append(label);
+         }
+
+        $("#pass").slideToggle();
+        $("#bio").slideToggle();
+        num++;
+    });
+    
+    $("$update").click(event) => {
+        event.preventDefault();
+        $("$.biodata-form").toggle();
+        $("$.bio-data").toggle();
+        $("$.action-button").toggle();
+        $("#update").toggle();
+
+        $("$cancel-update").click(event) => {
+            event.preventDefault();
+            $("$.biodata-form").toggle();
+            $("$.bio-data").toggle();
+            $("$.action-button").toggle();
+            $("#update").toggle();
+        }
+
+        $("#tel").on("keydown", () => {
+            if($("#tel").val().length = 4 {
+                $("#tel").val()($("#tel").val() + "-");
+            }else if $("#tel").val().length = 9) {
+                $("#tel").val()($("#tel").val() + "+");
+            }
+        });
+    });', \yii\web\View::POS_READY);
+?>
 
 
 

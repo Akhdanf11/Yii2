@@ -45,6 +45,8 @@ class Siswa extends \yii\db\ActiveRecord
             ['nisn', 'number', 'message' => 'NISN Harus Angka'],
             ['nisn', 'string', 'min' => 10, 'max' => 10],
 
+            ['telp', 'number', 'message' => 'NO Telpon Harus Angka'],
+
             ['nama', 'required', 'message' => 'Nama Tidak Boleh Kosong'],
             ['email', 'unique', 'targetClass' => '\common\models\SiswaLogin', 'message' => 'Nama Sudah Terdaftar'],
 
