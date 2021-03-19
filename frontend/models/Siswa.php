@@ -39,11 +39,12 @@ class Siswa extends \yii\db\ActiveRecord
     {
         return [
             [['nisn', 'nis', 'nama', 'id_kelas', 'id_kelas', 'alamat', 'password'], 'required'],
-            [['nisn'], 'number'],
+            
             [['nisn', 'id_kelas', 'id_jurusan', 'no_telp'], 'integer'],
             [['nama','nis', 'alamat'], 'string'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password'],
 
+            [['nisn'], 'number'],
             ['nisn', 'required', 'message' => 'NISN Tidak Boleh Kosong'],
             ['nisn', 'unique', 'targetClass' => '\common\models\SiswaLogin', 'message' => 'NISN Sudah Terdaftar'],
             ['nisn', 'number', 'message' => 'NISN Harus Angka'],

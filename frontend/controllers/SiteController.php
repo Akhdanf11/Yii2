@@ -20,6 +20,7 @@ use frontend\models\Siswa;
 use frontend\models\Classes;
 use frontend\models\PasswordReset;
 use common\models\SiswaLogin;
+use frontend\models\ChangePassword;
 
 /**
  * Site controller
@@ -171,24 +172,23 @@ class SiteController extends Controller
         $password = new PasswordReset;
         $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
         if (Yii::$app->request->post()) {
-            if (Yii::$app->request->post('PasswordReset'['password_2'])) {
-            $data = Siswa::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+            if (Yii::$app->request->post('PasswordReset')['password_2']) {
+            $data = ChangePassword::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
             if ($data['password'] != "") {
                 if(Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('PasswordReset')['password'],
                 $data['password'])){
                     Yii::$app->session->setFlash('Success', 'Password telah di Update');
                     $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
-                    $data->save();
                     return $this->redirect(['site/account']);
-                }else {
-                    Yii::$app->session->setFlash('Success', 'Password telah di Create');
-                    $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
-                    $data->save();
-                    return $this->redirect(['site/account']);
-                }
+                    } else {
+                        Yii::$app->session->setFlash('Success', 'Password telah di Create');
+                        $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
+                        $data->save();
+                        return $this->redirect(['site/account']);
+                    }
             } 
-            }
         }
+    }
         $old = $data['password'] != "" ? false : true;
 
         return $this->render('account',[
