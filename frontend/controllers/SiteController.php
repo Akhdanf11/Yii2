@@ -170,6 +170,8 @@ class SiteController extends Controller
     public function actionAccount()
     {
         $password = new PasswordReset;
+        Yii::$app->session->setFlash('Success', 'Password telah di Create');
+
         $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
         if (Yii::$app->request->post()) {
             if (Yii::$app->request->post('PasswordReset')['password_2']) {

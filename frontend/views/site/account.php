@@ -18,30 +18,10 @@ use frontend\models\Skills;
 $this->title = 'Manage Account';
 $this->params['breadcrumbs'][] = $this->title;
 
-AppAsset::register($this);
-
 ?>
-<?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
-<head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
-</head>
-<body>
-<?php $this->beginBody() ?>
-
-    
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-       
-
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
                 <div id="pass" class="mt-4">
@@ -53,7 +33,6 @@ AppAsset::register($this);
                             <div class="col-lg-10 card p-5 my-2">
                                 <h2>
                                     <span class="bio-data justify-content-between"><?= $data['nama'] ?></span>
-                                    
                                 </h2>
                     <hr>
                     <div class="row">
