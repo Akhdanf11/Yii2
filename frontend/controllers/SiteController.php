@@ -18,6 +18,7 @@ use frontend\models\ContactForm;
 use frontend\models\Personal;
 use frontend\models\Siswa;
 use frontend\models\Classes;
+use frontend\models\PasswordReset;
 use common\models\SiswaLogin;
 
 /**
@@ -165,6 +166,38 @@ class SiteController extends Controller
 
     }
 
+    public function actionAccount()
+    {
+        $password = new PasswordReset;
+        $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+        if (Yii::$app->request->post()) {
+            if (Yii::$app->request->post('PasswordReset'['password_2'])) {
+            $data = Siswa::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+            if ($data['password'] != "") {
+                if(Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('PasswordReset')['password'],
+                $data['password'])){
+                    Yii::$app->session->setFlash('Success', 'Password telah di Update');
+                    $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
+                    $data->save();
+                    return $this->redirect(['site/account']);
+                }else {
+                    Yii::$app->session->setFlash('Success', 'Password telah di Create');
+                    $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
+                    $data->save();
+                    return $this->redirect(['site/account']);
+                }
+            } 
+            }
+        }
+        $old = $data['password'] != "" ? false : true;
+
+        return $this->render('account',[
+            'data' => $data,
+            'pass' => $password,
+            'old' => $old,
+        ]);
+    }
+
     /**
      * Displays contact page.
      *
@@ -187,6 +220,8 @@ class SiteController extends Controller
             ]);
         }
     }
+
+
 
     /**
      * Displays about page.
@@ -237,23 +272,6 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionRequestPasswordReset()
-    {
-        $model = new PasswordResetRequestForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
-            }
-        }
-
-        return $this->render('requestPasswordResetToken', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Resets password.

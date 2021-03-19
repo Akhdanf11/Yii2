@@ -20,6 +20,9 @@ class Siswa extends \yii\db\ActiveRecord
 
     public $password_repeat;
     public $telp;
+    public $email;
+    public $repeat_password;
+
 
     /**
      * {@inheritdoc}
