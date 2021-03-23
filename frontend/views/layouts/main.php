@@ -27,8 +27,6 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-    
-
 <!-- Page Wrapper -->
 <div id="wrapper">
 
