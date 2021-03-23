@@ -37,10 +37,16 @@ AppAsset::register($this);
 <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?= Alert::widget() ?>
+       
+
+
         <!-- Begin Page Content -->
         <div class="container-fluid">   
-            <?= Alert::widget() ?>
+
+
             <?= $content ?>
+
         </div>
         <!-- /.container-fluid -->
 
