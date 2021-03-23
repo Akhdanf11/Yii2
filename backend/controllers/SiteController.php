@@ -1,11 +1,14 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\Petugas;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\LoginFormPetugas;
+use common\models\PetugasLogin;
 
 /**
  * Site controller
@@ -22,7 +25,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'signup'],
                         'allow' => true,
                     ],
                     [
@@ -70,15 +73,30 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = "maintwo";
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
-        $this->layout = 'blank';
+        $model = new LoginFormPetugas();
+        if (Yii::$app->request->post()) {
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            $check = PetugasLogin::find()->where(['username' => Yii::$app->request->post("LoginFormPetugas")['username']])->one();
+
+            if($check && Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('LoginFormPetugas')['password'], $check['password'])) {
+
+                $model->login((new PetugasLogin)->findByUsername($check['username']));
+
+                return $this->redirect(['site/index']);
+            } else {
+                Yii::$app->session->setFlash('danger', 'USERNAME Or Password Are Wrong.');
+
+                return $this->render('login', [
+                    'model' => $model,
+                ]);
+            }
+
         } else {
             $model->password = '';
 
@@ -86,6 +104,32 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionSignup()
+    {
+        $model = new Petugas;
+        $this->layout = "maintwo";
+        if (Yii::$app->request->post()) {
+
+            Yii::$app->session->setFlash('success', 'Thank you for registration');
+            $petugas = new Petugas;
+
+            $petugas->username = Yii::$app->request->post('Petugas')['username'];
+            $petugas->level = Yii::$app->request->post('Petugas')['level'];
+            $petugas->nama_petugas = Yii::$app->request->post('Petugas')['nama_petugas'];
+            $petugas->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('Petugas')['password']);
+            $petugas->level = Yii::$app->request->post('Petugas')['level'];
+            $petugas->save();
+
+            return $this->redirect(["site/login"]);
+
+        } else {
+            return $this->render('signup', [
+                'model' => $model,
+            ]);
+        }
+        
     }
 
     /**

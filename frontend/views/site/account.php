@@ -16,7 +16,6 @@ use frontend\models\Classes;
 use frontend\models\Skills;
 
 $this->title = 'Manage Account';
-$this->params['breadcrumbs'][] = $this->title;
 
 AppAsset::register($this);
 

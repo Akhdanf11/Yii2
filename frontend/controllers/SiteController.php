@@ -212,6 +212,7 @@ class SiteController extends Controller
             $data->nisn = Yii::$app->user->identity->nisn;
             $data->keluhan = Yii::$app->request->post("ContactForm")['body'];
             $data->save();
+            Yii::$app->session->setFlash('success', 'Keluhan Telah Dikkirim');
             return $this->render('contact', [
                 'model' => $model,
             ]);

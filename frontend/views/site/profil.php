@@ -93,27 +93,6 @@ AppAsset::register($this);
                     <?php $form = ActiveForm::end(); ?>
 
                 </div>
-                <div id="pass" class="mt-4">
-                    <?php $form = ActiveForm::begin(['id' => 'pass-form']); ?>
-                    <h2>Ganti Password</h2>
-                    <hr>
-                    <div class="row">
-                            <div class="col-4">
-                                <input type="text" class="form-control" id="password" placeholder="Enter Current Password">                                 
-                            </div>
-                            <div class="col-4">
-                            <input type="text" class="form-control" id="password_2" placeholder="Enter New Password">                                 
-                            </div>
-                            <div class="col-4">
-                                    <input type="text" class="form-control" id="repeat_password" placeholder="Enter Repassword">
-                            </div>
-
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-success mt-3"><i class="fa fa-check mr-2"></i>Simpan</button>
-                            </div>
-                    <?php $form = ActiveForm::end(); ?>
-                    </div>
-                </div>
             </div>
         </div>
 

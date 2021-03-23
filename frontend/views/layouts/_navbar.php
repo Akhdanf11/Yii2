@@ -28,29 +28,11 @@ AppAsset::register($this);
         </button>
 
         <!-- Topbar Search -->
-        <form
-            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                    aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+        <img src="img/logo_smk9.png" alt="" height="50px" width="55px" class="ml-2">
+        <h4 class="text-primary font-bold ml-2">APP SPP</h4>
 
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
-
-            <?php
-                    $menuItems = [
-                        ['label' => 'Home', 'url' => ['/site/index']],
-                        ['label' => 'About', 'url' => ['/site/about']],
-                        ['label' => 'Contact', 'url' => ['/site/contact']],
-                    ];
-            ?>
 
             <li class="nav-item">
                 <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/index']); ?>">HOME</a>
@@ -61,6 +43,10 @@ AppAsset::register($this);
             <li class="nav-item">
                 <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/history']); ?>">HISTORY</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/contact']); ?>">CONTACT</a>
+            </li>
+            
         
 
             <div class="topbar-divider d-none d-sm-block"></div>

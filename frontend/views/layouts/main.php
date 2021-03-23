@@ -56,9 +56,7 @@ AppAsset::register($this);
     <!-- Footer -->
     <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left"><img src="img/logo_smk9.png" alt="" height="50px" width="55px"> APP SPP</p>
     </div>
 </footer>
     <!-- End of Footer -->
