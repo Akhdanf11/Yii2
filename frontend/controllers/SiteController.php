@@ -171,7 +171,7 @@ class SiteController extends Controller
     public function actionAccount()
     {
         $password = new PasswordReset;
-        Yii::$app->session->setFlash('Success', 'Password telah di Create');
+        Yii::$app->session->setFlash('success', 'Password telah di Create');
 
         $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
         if (Yii::$app->request->post()) {
@@ -180,11 +180,11 @@ class SiteController extends Controller
             if ($data['password'] != "") {
                 if(Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('PasswordReset')['password'],
                 $data['password'])){
-                    Yii::$app->session->setFlash('Success', 'Password telah di Update');
+                    Yii::$app->session->setFlash('success', 'Password telah di Update');
                     $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
                     return $this->redirect(['site/account']);
                     } else {
-                        Yii::$app->session->setFlash('Success', 'Password telah di Create');
+                        Yii::$app->session->setFlash('success', 'Password telah di Create');
                         $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
                         $data->save();
                         return $this->redirect(['site/account']);
@@ -214,6 +214,7 @@ class SiteController extends Controller
             $data->nisn = Yii::$app->user->identity->nisn;
             $data->keluhan = Yii::$app->request->post("ContactForm")['body'];
             $data->save();
+            Yii::$app->session->setFlash('success', 'Keluhan Telah Dikkirim');
             return $this->render('contact', [
                 'model' => $model,
             ]);
@@ -269,13 +270,6 @@ class SiteController extends Controller
         }
         
     }
-
-    /**
-     * Requests password reset.
-     *
-     * @return mixed
-     */
-
     /**
      * Resets password.
      *
