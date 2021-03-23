@@ -51,4 +51,8 @@ class LoginFormPetugas extends \yii\db\ActiveRecord
             'level' => 'Level',
         ];
     }
+    public function login($data = [])
+    {
+        return Yii::$app->user->login($data, $this->rememberMe ? 3600 * 24 * 30 : 0);
+    }
 }
