@@ -19,6 +19,7 @@ use frontend\models\Personal;
 use frontend\models\Siswa;
 use frontend\models\Classes;
 use frontend\models\PasswordReset;
+use frontend\models\Contact;
 use common\models\SiswaLogin;
 use frontend\models\ChangePassword;
 
@@ -208,14 +209,14 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending your message.');
-            }
-
-            return $this->refresh();
+        if (Yii::$app->request->post()) {
+            $data = new Contact;
+            $data->nisn = Yii::$app->user->identity->nisn;
+            $data->keluhan = Yii::$app->request->post("ContactForm")['body'];
+            $data->save();
+            return $this->render('contact', [
+                'model' => $model,
+            ]);
         } else {
             return $this->render('contact', [
                 'model' => $model,
