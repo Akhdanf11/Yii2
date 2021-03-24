@@ -16,7 +16,6 @@ use frontend\models\Classes;
 use frontend\models\Skills;
 
 $this->title = 'Profil';
-$this->params['breadcrumbs'][] = $this->title;
 
 AppAsset::register($this);
 
@@ -45,6 +44,12 @@ AppAsset::register($this);
         <!-- Begin Page Content -->
         <div class="container-fluid">
         <div class="pt-5">
+            <div class="row">
+                <div class="col-lg-12">
+                <h1><?= Html::encode($this->title) ?></h1>
+                    <hr>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10 card p-5 my-2">
@@ -101,5 +106,6 @@ AppAsset::register($this);
 </div>
 <!-- End of Content Wrapper -->
 
+</div>
 </div>
 <!-- End of Page Wrapper -->

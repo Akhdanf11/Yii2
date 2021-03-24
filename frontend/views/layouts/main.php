@@ -54,7 +54,7 @@ AppAsset::register($this);
     <!-- Footer -->
     <footer class="footer">
     <div class="container">
-        <p class="pull-left"><img src="img/logo_smk9.png" alt="" height="50px" width="55px"> APP SPP</p>
+        <p class="pull-left"><img src="img/logo_smk9.png" alt="" height="40px" width="45px"> APP SPP</p>
     </div>
 </footer>
     <!-- End of Footer -->

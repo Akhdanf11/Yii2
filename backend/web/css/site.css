@@ -15,7 +15,25 @@ body.blank {
     opacity: 85%;
     border-radius: 25px;
 }
-
+.glyphicon {
+    font-family: "Font Awesome 5 Free";
+}
+.glyphicon-eye-open:before {
+    content: "\f06e";
+    color: var(--success);
+    margin:10px;
+    margin-left:35px;
+}
+.glyphicon-pencil:before {
+    content: "\f044";
+    color: var(--primary);
+    margin:10px;
+}
+.glyphicon-trash:before {
+    content: "\f2ed";
+    color: var(--danger);
+    margin:10px;
+}
 .wrap {
     min-height: 100%;
     height: auto;

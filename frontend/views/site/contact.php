@@ -11,7 +11,7 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';   
 ?>
 <div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+    
 
 
 <div class="pt-5">
@@ -19,6 +19,7 @@ $this->title = 'Contact';
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10 card p-5 my-2">
                     <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                    <h1><?= Html::encode($this->title) ?></h1>
                     <p>
                         Jika anda punya keluhan mohon isi form dibawah.
                     </p>

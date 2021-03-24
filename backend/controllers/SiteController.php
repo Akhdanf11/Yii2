@@ -29,7 +29,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'pembayaran'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -65,6 +65,14 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
+    public function actionPembayaran()
+    {
+        $model = new LoginFormPetugas();
+
+        return $this->render('pembayaran');
+    }
+
 
     /**
      * Login action.
@@ -87,9 +95,10 @@ class SiteController extends Controller
             if($check && Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('LoginFormPetugas')['password'], $check['password'])) {
 
                 
-                return var_dump($model->login($check));
+                    // return var_dump($model->login($check));
+                    $model->login($check);
                 
-                // return $this->redirect(['site/index']);
+                return $this->redirect(['site/index']);
             } else {
                 Yii::$app->session->setFlash('danger', 'USERNAME Or Password Are Wrong.');
 
