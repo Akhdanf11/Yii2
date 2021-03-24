@@ -7,8 +7,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use backend\models\Spp;
 use common\models\LoginFormPetugas;
-use common\models\PetugasLogin;
 
 /**
  * Site controller
@@ -68,9 +68,21 @@ class SiteController extends Controller
     
     public function actionPembayaran()
     {
-        $model = new LoginFormPetugas();
+        $model = new Spp;
 
-        return $this->render('pembayaran');
+        if (Yii::$app->request->post()) {
+            $model->nisn = Yii::$app->request->post("nama-siswa");
+            $model->nominal = Yii::$app->request->post("Spp")['nominal'];
+            $model->save();
+
+            return $this->render('pembayaran', [
+                'model' => $model
+            ]);
+        }
+
+        return $this->render('pembayaran', [
+            'model' => $model
+        ]);
     }
 
 

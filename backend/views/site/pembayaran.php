@@ -25,12 +25,12 @@ $this->title = 'Pembayaran';
             <div class="row">
                 <div class="col-4">
                     <b class="mb-2 d-block">Kelas</b>
-                    <?= Html::activeDropDownList(new Kelas, 'id', ArrayHelper::map(Kelas::find()->all(), 'id', 'class'), ['class' => "form-control siswa-form", "id" => "id-class", 'prompt' => '~ Kelas ~']) ?>
+                    <?= Html::activeDropDownList(new Kelas, 'id', ArrayHelper::map(Kelas::find()->all(), 'id', 'nama'), ['class' => "form-control siswa-form", "id" => "id-class", 'prompt' => '~ Kelas ~']) ?>
                 </div>
 
                 <div class="col-8">
                     <b class="mb-2 d-block">Jurusan</b>
-                    <?= Html::activeDropDownList(new Jurusan, 'id', ArrayHelper::map(Jurusan::find()->all(), 'id', 'skill'), ['class' => "form-control siswa-form", "id" => "id-skill", 'prompt' => '~ Jurusan ~']) ?>
+                    <?= Html::activeDropDownList(new Jurusan, 'id', ArrayHelper::map(Jurusan::find()->all(), 'id', 'nama'), ['class' => "form-control siswa-form", "id" => "id-skill", 'prompt' => '~ Jurusan ~']) ?>
                 </div>
 
                 <div class="col-12 mt-3">
@@ -115,7 +115,7 @@ $this->registerJs('
             formData.append("class", $("#id-class").val());
             formData.append("skill", $("#id-skill").val());
             $.ajax({
-                url : "/action/get-siswa",
+                url : "index.php?r=action%2Fget-siswa",
                 type : "post",
                 data: formData,
                 processData: false,
