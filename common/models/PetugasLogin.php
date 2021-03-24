@@ -59,9 +59,9 @@ class PetugasLogin extends ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentity($username)
+    public static function findIdentity($id)
     {
-        return static::findOne(['id' => $username]);
+        return static::findOne(['id_petugas' => $id]);
     }
 
     /**
@@ -144,7 +144,6 @@ class PetugasLogin extends ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        // return $this->auth_key;
         return false;
     }
 

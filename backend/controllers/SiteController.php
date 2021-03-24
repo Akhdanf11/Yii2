@@ -86,9 +86,10 @@ class SiteController extends Controller
 
             if($check && Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('LoginFormPetugas')['password'], $check['password'])) {
 
-                $model->login((new PetugasLogin)->findByUsername($check['username']));
-
-                return $this->redirect(['site/index']);
+                
+                return var_dump($model->login($check));
+                
+                // return $this->redirect(['site/index']);
             } else {
                 Yii::$app->session->setFlash('danger', 'USERNAME Or Password Are Wrong.');
 
