@@ -20,7 +20,7 @@
                         </div>
                         <div class="card-body pt-5">
                             <a class="nav-link" href="../backend/web/index.php?r=site%2Flogin">
-                                <button type="submit" class="btn btn-success btn-block"><i class="fa fa-wrench mr-2"></i> Masuk Sebagai Admin | Petugas</button>
+                                <button type="submit" class="btn btn-success btn-block"><i class="fas fa-users-cog"></i> Masuk Sebagai Admin | Petugas</button>
                             </a>
                             <div class="pt-3">
                             <a class="nav-link" href="../frontend/web/index.php?r=site%2Flogin">

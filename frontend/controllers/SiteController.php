@@ -82,7 +82,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+            return $this->render('index');
     }
 
     /**
@@ -148,6 +149,7 @@ class SiteController extends Controller
             $data->id_jurusan = Yii::$app->request->post('Skills')['id'];
             $data->alamat = Yii::$app->request->post('Personal')['alamat'];
             $data->no_telp = Yii::$app->request->post('Personal')['no_telp'];
+            // $data->img = Yii::$app->request->post('Personal')['img'];
             $data->save();
             Yii::$app->session->setFlash('success', 'Profil Telah Diperbarui');
         }

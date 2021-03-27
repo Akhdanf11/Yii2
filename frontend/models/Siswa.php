@@ -39,6 +39,7 @@ class Siswa extends \yii\db\ActiveRecord
     {
         return [
             [['nisn', 'nis', 'nama', 'alamat', 'password'], 'required'],
+            ['img', 'file'],
             
             // [['nisn', 'no_telp'], 'integer'],
             // [['nama','nis', 'alamat'], 'string'],
@@ -77,7 +78,7 @@ class Siswa extends \yii\db\ActiveRecord
             'no_telp' => 'No Telp',
             'id_spp' => 'Id Spp',
         ];
-    }
+    } 
 
     public function login($data = [])
     {

@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use common\models\LoginForm;
 use backend\models\Spp;
 use common\models\LoginFormPetugas;
+use common\models\PetugasLogin;
 
 /**
  * Site controller
@@ -74,6 +75,7 @@ class SiteController extends Controller
             $model->nisn = Yii::$app->request->post("nama-siswa");
             $model->nominal = Yii::$app->request->post("Spp")['nominal'];
             $model->save();
+            Yii::$app->session->setFlash('success', 'Anda Telah Berhasil Melakukan Pembayaran');
 
             return $this->render('pembayaran', [
                 'model' => $model

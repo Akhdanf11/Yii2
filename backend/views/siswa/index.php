@@ -1,5 +1,6 @@
 <?php
 
+use yii\bootstrap\Html as BootstrapHtml;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -31,6 +32,12 @@ $this->title = 'Siswa';
             //'id_jurusan',
             'alamat:ntext',
             'no_telp',
+            // [
+            //     'label' => 'Foto Siswa',
+            //     'attribute' =>'img',
+            //     'format' => ['image', ['width' => '100', 'height' => '100']],
+            //     'value' => Yii::getAlias('@gambarSiswaUrl'). '/' . $model->img,
+            // ],
             //'id_spp',
 
             ['class' => 'yii\grid\ActionColumn'],

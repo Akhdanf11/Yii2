@@ -52,48 +52,49 @@ AppAsset::register($this);
             </div>
             <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-10 card p-5 my-2">
+                <div class="col-lg-10 card p-lg-5 my-lg-2">
                     <small class="bio-data"></small>
                     <?php $form = ActiveForm::begin(['id' => 'bio-form']); ?>
                     <h2>
-                        <span class="bio-data justify-content-between"><?= $data['nama'] ?></span>
+                    <img class="img-profile img-responsive rounded" src="<?= Yii::getAlias("@gambarSiswaUrl"). '/' . Yii::$app->user->identity->img?>" width="70px" height="70px">
+                        <span class="bio-data justify-content-between ml-3"><?= $data['nama'] ?></span>
                         
                     </h2>
                     <hr>
                     <div class="bio">
                         <div class="row">
-                        <div class="col-3">
-                        <div class="mb-1 font-weight-bold">NISN</div>
+                        <div class="col-lg-3">
+                        <div class="mb-lg-1 font-weight-bold">NISN</div>
                                         <?= $form->field($data, 'nisn')->textInput(['class' =>  'biodata-form form-control','readonly' => 'true', 'disabled' => 'true'])->label(false); ?>
                         </div>
-                            <div class="col-3">                                                                     
+                            <div class="col-lg-3">                                                                     
                                 <div class="mb-1 font-weight-bold">NIS</div>
                                         <?= $form->field($data, 'nis')->textInput(['class' =>  'biodata-form form-control','readonly' => 'true', 'disabled' => 'true'])->label(false); ?>
                             </div>
-                            <div class="col-6">
-                                <div class="mb-1 font-weight-bold">Kelas</div>
+                            <div class="col-lg-6">
+                                <div class="mb-lg-1 font-weight-bold">Kelas</div>
                                         <div class="row">
-                                            <div class="col-3">
+                                            <div class="col-lg-3">
                                                 <?= Html::activeDropDownList(new Classes, 'id', ArrayHelper::map(Classes::find()->all(), 'id', 'nama'), ['class' => "form-control biodata-form", 'options' => [$data['id_kelas'] => ['selected' => 'selected']]]) ?>
                                             </div>
-                                            <div class="col-9">
+                                            <div class="col-lg-9">
                                                 <?= Html::activeDropDownList(new Skills, 'id', ArrayHelper::map(Skills::find()->all(), 'id', 'nama'), ['class' => "form-control biodata-form", 'options' => [$data['id_jurusan'] => ['selected' => 'selected']]]) ?>
                                             </div>
                                         </div>
                             </div>
-                            <div class="col-6">
-                            <div class="mb-1 font-weight-bold">Nama</div>
+                            <div class="col-lg-6">
+                            <div class="mb-lg-1 font-weight-bold">Nama</div>
                                     <?= $form->field($data, 'nama')->textInput(['class' =>  'biodata-form form-control'])->label(false); ?>
                             </div>
                             <div class="col-6">
-                            <div class="mb-1 font-weight-bold">Nomor Telepon</div>
+                            <div class="mb-lg-1 font-weight-bold">Nomor Telepon</div>
                                         <?= $form->field($data, 'no_telp')->textInput(['class' =>  'biodata-form form-control', 'id' => 'tel'])->label(false); ?>
                             </div>
-                            <div class="col-12">
-                                <div class="mb-1 font-weight-bold mt-2">Alamat</div>
-                                    <?= $form->field($data, 'alamat')->textInput(['class' =>  'biodata-form form-control'])->label(false); ?>
-                            <button type="submit" class="btn btn-success mt-3" id="do-update"><i class="fa fa-wrench mr-2"></i>Ubah</button>
-                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-lg-1 font-weight-bold mt-2">Alamat</div>
+                                    <?= $form->field($data, 'alamat')->textarea(['rows' => 2])->label(false); ?>
+                                    <button type="submit" class="btn btn-success mt-3" id="do-update"><i class="fa fa-wrench mr-2"></i>Ubah</button>
+                                </div>
                     </div>
                     <?php $form = ActiveForm::end(); ?>
 

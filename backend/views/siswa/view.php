@@ -7,8 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\Siswa */
 
 $this->title = $model->nisn;
-$this->params['breadcrumbs'][] = ['label' => 'Siswas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="siswa-view">
@@ -32,13 +30,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'nisn',
             'nis',
             'nama:ntext',
-            'password:ntext',
-            'id_kelas',
-            'id_jurusan',
+            // 'password:ntext',
+            // 'id_kelas',
+            // 'id_jurusan',
             'alamat:ntext',
             'no_telp',
-            'id_spp',
+            // 'id_spp',    
+            [
+                    'label' => 'Foto Siswa',
+                    'attribute' =>'img',
+                    'format' => ['image', ['width' => '100', 'height' => '100']],
+                    'value' => Yii::getAlias('@gambarSiswaUrl'). '/' . $model->img,
+                ],
         ],
     ]) ?>
+
 
 </div>

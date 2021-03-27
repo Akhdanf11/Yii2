@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 
 <div class="siswa-form">
 <hr>
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options'=> ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
         <div class="col-6">
             <div class="row">
@@ -55,8 +55,15 @@ use yii\widgets\ActiveForm;
         <div class="col-lg-6">
             <?= $form->field($model, 'alamat')->textarea(['rows' => 2]) ?>
         </div>
-        <div class="col-lg-4">
-            <?= $form->field($model, 'no_telp')->textInput() ?>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-lg-6">
+                <?= $form->field($model, 'no_telp')->textInput() ?>
+                </div>
+                <div class="col-lg-6">
+                <?= $form->field($model, 'img')->fileInput() ?>
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -66,3 +73,4 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+Z

@@ -8,6 +8,7 @@ use backend\models\SiswaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SiswaController implements the CRUD actions for Siswa model.
@@ -67,6 +68,7 @@ class SiswaController extends Controller
         $model = new Siswa();
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('Siswa')['password']);
             $model->id_kelas = Yii::$app->request->post('Siswa')['id_kelas'];
             $model->id_jurusan = Yii::$app->request->post('Siswa')['id_jurusan'];
             $model->no_telp = Yii::$app->request->post('Siswa')['no_telp'];
@@ -93,10 +95,13 @@ class SiswaController extends Controller
             $model->id_kelas = Yii::$app->request->post('Siswa')['id_kelas'];
             $model->id_jurusan = Yii::$app->request->post('Siswa')['id_jurusan'];
             $model->no_telp = Yii::$app->request->post('Siswa')['no_telp'];
+            $model->img = UploadedFile::getInstance($model, 'img');
+            $fileName = time(). '.' . $model->img->extension;
+            $model->img->saveAs(Yii::getAlias('@gambarSiswaPath'). '/' . $fileName);
+            $model->img = $fileName;
             $model->save();
             return $this->redirect(['view', 'id' => $model->nisn]);
         }
-        $model->password = "";
         return $this->render('update', [
             'model' => $model,
         ]);
