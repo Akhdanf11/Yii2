@@ -36,26 +36,17 @@ AppAsset::register($this);
 
             <?php if(Yii::$app->user->identity->level == 'admin'): ?>
             <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/index']); ?>">HOME</a>
+                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/pembayaran']); ?>">PAYMENT</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/petugas/index']); ?>">PETUGAS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/siswa/index']); ?>">SISWA</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/jurusan/index']); ?>">JURUSAN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/contact/index']); ?>">CONTACT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/pembayaran']); ?>">PEMBAYARAN</a>
-            </li>
+                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/history']); ?>">HISTORY</a>
+            </li> 
             <?php else: ?>
             <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/pembayaran']); ?>">PEMBAYARAN</a>
+                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/pembayaran']); ?>">PAYMENT</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/history']); ?>">HISTORY</a>
             </li>
             <?php endif; ?>
         

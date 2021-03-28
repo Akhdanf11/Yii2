@@ -12,11 +12,16 @@ $this->title = 'Contact';
 ?>
 <div class="contact-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Contact', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+<div class="row">
+        <div class="col-lg-9">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-lg-11">
+            <hr>
+        </div>
+    </div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -26,7 +31,7 @@ $this->title = 'Contact';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'nisn',
             'keluhan:ntext',
 

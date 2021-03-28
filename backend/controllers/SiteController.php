@@ -10,6 +10,10 @@ use common\models\LoginForm;
 use backend\models\Spp;
 use common\models\LoginFormPetugas;
 use common\models\PetugasLogin;
+use frontend\models\Classes;
+use frontend\models\Siswa;
+use frontend\models\Skills;
+use yii\web\Response;
 
 /**
  * Site controller
@@ -30,7 +34,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pembayaran'],
+                        'actions' => ['logout', 'index', 'pembayaran','history'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -74,9 +78,8 @@ class SiteController extends Controller
         if (Yii::$app->request->post()) {
             $model->nisn = Yii::$app->request->post("nama-siswa");
             $model->nominal = Yii::$app->request->post("Spp")['nominal'];
-            $model->save();
-            Yii::$app->session->setFlash('success', 'Anda Telah Berhasil Melakukan Pembayaran');
-
+            $model->save(); 
+            
             return $this->render('pembayaran', [
                 'model' => $model
             ]);
@@ -166,5 +169,10 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+    
+    public function actionHistory()
+    {
+        return $this->render('history');
     }
 }

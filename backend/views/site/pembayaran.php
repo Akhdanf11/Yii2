@@ -6,16 +6,16 @@ use yii\helpers\ArrayHelper;
 use frontend\models\Jurusan;
 use frontend\models\Kelas;
 
-$this->title = 'Pembayaran';
+$this->title = 'Payment';
 ?>
-<h1 class="my-4">Pembayaran</h1>
+<h1 class="my-4">Payment</h1>
 
 <div class="row">
     
     <div class="col-lg-6">
         <div class="card">
     
-        <div class="card-header">
+        <div class="card-header bg-primary text-light">
             <i class="fas fa-user-friends mr-2"></i>
             Data Siswa
         </div>
@@ -50,8 +50,8 @@ $this->title = 'Pembayaran';
         <div class="card">
             
 
-            <div class="card-header">
-                <i class="fas fa-dollar-sign mr-2"></i>
+            <div class="card-header bg-primary text-light">
+                <span><b>Rp</b></span>
                 Transaksi
             </div>
 
@@ -69,9 +69,9 @@ $this->title = 'Pembayaran';
                 </div>
             </div>
 
-            <div class="card-footer p-3">
-                <small class="text-muted"><span id="month">0</span> Bulan</small>
-                <?= Html::submitButton('<i class="fas fa-check"></i>&nbsp;&nbsp;Bayar', ['class' => 'btn btn-dark btn-sm ', 'id' => 'btn-pay', 'style' => 'float:right']) ?>
+            <div class="card-footer p-3 bg-primary">
+                <small class="text-light"><span id="month" class="text-light">0</span> Bulan</small>
+                <?= Html::submitButton('<i class="fas fa-check"></i>&nbsp;&nbsp;Bayar', ['class' => 'btn btn-light text-primary btn-sm ', 'id' => 'btn-pay', 'style' => 'float:right']) ?>
             </div>
             <?php ActiveForm::end(); ?>
 
@@ -85,7 +85,7 @@ $this->title = 'Pembayaran';
 $this->registerJs('
     $(document).ready(function(){
 
-        let price = 150000;
+        let price = 135000;
         $("#transaksi").slideToggle();
         $("#nama-siswa").prop("disabled", "true");
         $("#btn-pay").prop("disabled", "true");

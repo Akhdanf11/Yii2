@@ -11,11 +11,21 @@ $this->title = 'Petugas';
 ?>
 <div class="petugas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Petugas', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="row">
+        <div class="col-lg-9">
+            <h1><?= Html::encode($this->title) ?></h1>
+        </div>
+        <div class="col-lg-3">
+            <p>
+                <?= Html::a('<i class="fas fa-user-plus"></i> Tambah Petugas', ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-lg-11">
+            <hr>
+        </div>
+    </div>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

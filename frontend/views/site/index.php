@@ -9,7 +9,11 @@ $this->title = 'Home';
     <div class="jumbotron">
         <h1>Selamat datang</h1>
 
-        <p class="lead">Anda masuk ke <b>APP SPP</b></p>
+        <p class="lead">
+        <span class="bio-data justify-content-between ml-3">
+        <?= Yii::$app->user->identity->nama?>
+        </span>
+        Kamu telah masuk ke <b>APP SPP</b></p>
     </div>
 
     <div class="body-content">

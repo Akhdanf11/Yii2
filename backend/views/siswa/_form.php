@@ -61,7 +61,7 @@ use yii\widgets\ActiveForm;
                 <?= $form->field($model, 'no_telp')->textInput() ?>
                 </div>
                 <div class="col-lg-6">
-                <?= $form->field($model, 'img')->fileInput() ?>
+                <?= $form->field($model, 'img')->fileInput()->label("Foto Siswa") ?>
                 </div>
             </div>
         </div>
@@ -73,4 +73,3 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-Z
