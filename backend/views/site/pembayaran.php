@@ -113,10 +113,6 @@ $this->registerJs('
         $("#id-skill").change(() => {
             getSiswa();
         });
-        
-        setTimeout(function() {
-            $("#alert-payment").hide();
-        }, 2000);
 
         function getSiswa() {
             let formData = new FormData;
@@ -158,3 +154,14 @@ $this->registerJs('
     });', \yii\web\View::POS_READY);
 
 ?>
+
+<?php if (isset($payment)) {
+    $this->registerJs('
+    $(document).ready(function(){
+
+        setTimeout(() => {
+            $("#alert-payment").fadeOut();
+        }, 2000);
+
+    });', \yii\web\View::POS_READY);
+} ?>
