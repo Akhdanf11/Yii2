@@ -11,7 +11,7 @@ $this->title = 'Payment';
 <h1 class="my-4">Payment</h1>
 
 <?php if(isset($payment)): ?>
-<div class="alert alert-success">Pembayaran Berhasil</div>
+<div class="alert alert-success" id="alert-payment">Pembayaran Berhasil</div>
 <?php endif; ?>
 
 <div class="row">
@@ -113,6 +113,10 @@ $this->registerJs('
         $("#id-skill").change(() => {
             getSiswa();
         });
+        
+        setTimeout(function() {
+            $("#alert-payment").hide();
+        }, 2000);
 
         function getSiswa() {
             let formData = new FormData;
