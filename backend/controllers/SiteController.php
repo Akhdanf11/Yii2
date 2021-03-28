@@ -78,10 +78,11 @@ class SiteController extends Controller
         if (Yii::$app->request->post()) {
             $model->nisn = Yii::$app->request->post("nama-siswa");
             $model->nominal = Yii::$app->request->post("Spp")['nominal'];
-            $model->save(); 
+            $model->save();
             
             return $this->render('pembayaran', [
-                'model' => $model
+                'model' => $model,
+                'payment' => true
             ]);
         }
 

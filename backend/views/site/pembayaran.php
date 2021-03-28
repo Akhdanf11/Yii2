@@ -10,6 +10,10 @@ $this->title = 'Payment';
 ?>
 <h1 class="my-4">Payment</h1>
 
+<?php if(isset($payment)): ?>
+<div class="alert alert-success">Pembayaran Berhasil</div>
+<?php endif; ?>
+
 <div class="row">
     
     <div class="col-lg-6">
