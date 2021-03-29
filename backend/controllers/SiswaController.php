@@ -92,6 +92,7 @@ class SiswaController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('Siswa')['password']);
             $model->id_kelas = Yii::$app->request->post('Siswa')['id_kelas'];
             $model->id_jurusan = Yii::$app->request->post('Siswa')['id_jurusan'];
             $model->no_telp = Yii::$app->request->post('Siswa')['no_telp'];

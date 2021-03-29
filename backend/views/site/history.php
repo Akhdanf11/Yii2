@@ -104,6 +104,7 @@ $this->title = 'Generate Laporan';
     </div>
 </page>
 
+
 <?php
 $this->registerJs('
     $(document).ready(function(){
@@ -188,7 +189,6 @@ $this->registerJs('
         }
     $("#datepicker").daterangepicker({
             "timepicker" : true,
-            "applyClass": "btn-dark"
         }, function(start, end, label) {
             dateData.append("date1", start.format("YYYY-MM-DD"));
             dateData.append("date2", end.format("YYYY-MM-DD"));

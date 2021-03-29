@@ -161,7 +161,9 @@ $this->registerJs('
 
         setTimeout(() => {
             $("#alert-payment").fadeOut();
-        }, 2000);
+            window.location.href = "index.php?r=site%2Fpembayaran";
+        }, 2000
+    );
 
     });', \yii\web\View::POS_READY);
 } ?>

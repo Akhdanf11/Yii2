@@ -12,6 +12,7 @@ class SignAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'vendor/fontawesome-free/css/all.min.css',
         'css/site.css',
     ];
     public $js = [

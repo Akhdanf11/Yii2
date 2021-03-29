@@ -7,8 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Login Siswa';
 ?>
 <div class="site-login">
     
@@ -32,10 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('<i class="fas fa-sign-in-alt"></i> Login', ['class' => 'btn btn-primary btn-sm-3 btn-block', 'name' => 'login-button']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>
+
+                    <div class="form-group">
+                        <a class="stretched-link" href="<?=Yii::getAlias('@indexURL')?>"  style="text-decoration: none;">
+                            <button type="submit" class="btn btn-success btn-sm-3 btn-block"><i class="fas fa-home"></i> Kembali </button>
+                        </a>
+                    </div>
                 </div>
                 </div>
         </div>

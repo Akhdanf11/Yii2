@@ -66,7 +66,9 @@ class PetugasController extends Controller
     {
         $model = new Petugas();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('Petugas')['password']);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id_petugas]);
         }
 
@@ -86,7 +88,9 @@ class PetugasController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash(Yii::$app->request->post('Petugas')['password']);
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id_petugas]);
         }
 

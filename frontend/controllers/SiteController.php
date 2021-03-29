@@ -11,7 +11,6 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\Skills;
 use frontend\models\ContactForm;
@@ -175,23 +174,30 @@ class SiteController extends Controller
         $password = new PasswordReset;
         $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
         if (Yii::$app->request->post()) {
+
             if (Yii::$app->request->post('PasswordReset')['password_2']) {
-            $data = ChangePassword::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+                $data = ChangePassword::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
+
             if ($data['password'] != "") {
+
                 if(Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('PasswordReset')['password'],
                 $data['password'])){
                     Yii::$app->session->setFlash('success', 'Password telah di Update');
                     $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
                     return $this->redirect(['site/account']);
+
                     } else {
-                        Yii::$app->session->setFlash('success', 'Password telah di Create');
+
+                        Yii::$app->session->setFlash('Success', 'Password telah di Create');
                         $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
                         $data->save();
                         return $this->redirect(['site/account']);
+
                     }
-            } 
+                } 
+            }
         }
-    }
+
         $old = $data['password'] != "" ? false : true;
 
         return $this->render('account',[
@@ -235,6 +241,11 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionRiwayat()
+    {
+        return $this->render('riwayat');
     }
 
     /**

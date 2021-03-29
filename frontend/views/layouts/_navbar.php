@@ -39,7 +39,7 @@ AppAsset::register($this);
                 <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/index']); ?>">HOME</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/history']); ?>">HISTORY</a>
+                <a class="nav-link text-gray-800 font-bold" href="<?= Url::toRoute(['/site/riwayat']); ?>">HISTORY</a>
             </li>           
         
 
@@ -55,17 +55,9 @@ AppAsset::register($this);
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="<?= Url::toRoute(['/site/profil']); ?>">
-                        <i class="fas fa-address-card fa-sm fa-fw mr-2 text-gray-400"></i>
-                        PROFIL
-                    </a>
                     <a class="dropdown-item" href="<?= Url::toRoute(['/site/account']); ?>">
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                         Account
-                    </a>
-                    <a class="dropdown-item" href="<?= Url::toRoute(['/site/contact']); ?>">
-                        <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
-                        CONTACT
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

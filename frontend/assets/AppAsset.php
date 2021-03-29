@@ -14,10 +14,14 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/sb-admin-2.min.css',
-        'vendor/fontawesome-free/css/all.min.css'
+        'vendor/fontawesome-free/css/all.min.css',
+        'css/daterangepicker.css',  
     ];
     public $js = [
         // 'vendor/jquery/jquery.min.js',
+        'js/html2pdf/ppdf.js',
+        'js/moment.min.js',
+        'js/daterangepicker.js',
         'js/sb-admin-2.js',
         'vendor/bootstrap/js/bootstrap.bundle.min.js',
         'js/sb-admin-2.min.js',

@@ -45,12 +45,6 @@ AppAsset::register($this);
         <div class="container-fluid">
         <div class="pt-5">
             <div class="row">
-                <div class="col-lg-12">
-                <h1><?= Html::encode($this->title) ?></h1>
-                    <hr>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10 card p-lg-5 my-lg-2">
                     <small class="bio-data"></small>

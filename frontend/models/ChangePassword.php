@@ -37,7 +37,7 @@ class ChangePassword extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            
+
         ];
     }
 
@@ -62,7 +62,7 @@ class ChangePassword extends \yii\db\ActiveRecord
         if ($this->validate()) {
             return Yii::$app->user->login($data, $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
-        
+
         return false;
     }
 }
