@@ -34,6 +34,7 @@ $this->title = 'Contact';
             // 'id',
             'nisn',
             'keluhan:ntext',
+
         ],
     ]); ?>
 

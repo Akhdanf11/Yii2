@@ -1,8 +1,11 @@
 <?php
 
 /* @var $this yii\web\View */
+use frontend\assets\AppAsset;
 
 $this->title = 'Riwayat Pembayaran';
+AppAsset::register($this);
+
 ?>
 <div class="pt-2">
 

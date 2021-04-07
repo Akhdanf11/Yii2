@@ -27,6 +27,14 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'level')->dropDownList([ 'admin' => 'Admin', 'petugas' => 'Petugas', ]) ?>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-6">
+             <?= $form->field($model, 'whatsapp')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-6">
+            <?= $form->field($model, 'instagram')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
     <div class="form-group">
         <?= Html::submitButton('<i class="fas fa-check"></i> Save', ['class' => 'btn btn-success']) ?>
     </div>

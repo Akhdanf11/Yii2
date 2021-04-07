@@ -43,6 +43,13 @@ AppAsset::register($this);
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+        <?php if(isset($passwordupdate)): ?>
+        <div class="alert alert-primary" id="alert-update">Password di Update</div>
+        <?php endif; ?>
+
+        <?php if(isset($passwordcreate)): ?>
+        <div class="alert alert-primary" id="alert-create">Password di Create</div>
+        <?php endif; ?>
                 <div id="pass" class="mt-4">
                     <?php $formPassword = ActiveForm::begin(['id' => 'pass-form']); ?>
                     <h2>Ganti Password</h2>
@@ -57,10 +64,10 @@ AppAsset::register($this);
                     <hr>
                     <div class="row">
                             <div class="col-4">
-                                <?= $formPassword->field($pass, 'password')->passwordInput(['class' => 'form-control']); ?>                                
+                                <?= $formPassword->field($pass, 'password')->passwordInput(['class' => 'form-control'])->label("Old Password"); ?>                                
                             </div>
                             <div class="col-4">
-                                <?= $formPassword->field($pass, 'password_2')->passwordInput(['class' => 'form-control']); ?>                                
+                                <?= $formPassword->field($pass, 'password_2')->passwordInput(['class' => 'form-control'])->label("New Password"); ?>                                
                             </div>
                             <div class="col-4">
                                 <?= $formPassword->field($pass, 'repeat_password')->passwordInput(['class' => 'form-control']); ?>                                
@@ -79,6 +86,30 @@ AppAsset::register($this);
 
 
 </div>
+<?php if (isset($passwordcreate)) {
+    $this->registerJs('
+    $(document).ready(function(){
+
+        setTimeout(() => {
+            $("#alert-create").fadeOut();
+            window.location.href = "index.php?r=site%2Faccount";
+        }, 2000
+    );
+
+    });', \yii\web\View::POS_READY);
+} ?>
+<?php if (isset($passwordupdate)) {
+    $this->registerJs('
+    $(document).ready(function(){
+
+        setTimeout(() => {
+            $("#alert-update").fadeOut();
+            window.location.href = "index.php?r=site%2Faccount";
+        }, 2000
+    );
+
+    });', \yii\web\View::POS_READY);
+} ?>
 <!-- End of Content Wrapper -->
 
 <!-- End of Page Wrapper -->

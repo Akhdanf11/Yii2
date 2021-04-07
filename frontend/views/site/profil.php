@@ -43,6 +43,9 @@ AppAsset::register($this);
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+            <?php if(isset($profil)): ?>
+            <div class="alert alert-success" id="alert-profil">Update Profil Berhasil</div>
+            <?php endif; ?>
         <div class="pt-5">
             <div class="row">
                 <div class="col-lg-1"></div>
@@ -104,3 +107,15 @@ AppAsset::register($this);
 </div>
 </div>
 <!-- End of Page Wrapper -->
+<?php if (isset($profil)) {
+    $this->registerJs('
+    $(document).ready(function(){
+
+        setTimeout(() => {
+            $("#alert-profil").fadeOut();
+            window.location.href = "index.php?r=site%2Fprofil";
+        }, 2000
+    );
+
+    });', \yii\web\View::POS_READY);
+} ?>

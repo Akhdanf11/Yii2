@@ -12,7 +12,9 @@ $this->title = 'Contact';
 ?>
 <div class="site-contact">
     
-
+<?php if(isset($createcontact)): ?>
+        <div class="alert alert-primary" id="alert-payment">Your Message Has Been Sent</div>
+<?php endif; ?>
 
 <div class="pt-5">
             <div class="row">
@@ -43,3 +45,16 @@ $this->title = 'Contact';
 
 
 </div>
+
+<?php if (isset($createcontact)) {
+    $this->registerJs('
+    $(document).ready(function(){
+
+        setTimeout(() => {
+            $("#alert-contact").fadeOut();
+            window.location.href = "index.php?r=site%2Fcontact";
+        }, 2000
+    );
+
+    });', \yii\web\View::POS_READY);
+} ?>

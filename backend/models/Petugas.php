@@ -34,6 +34,8 @@ class Petugas extends \yii\db\ActiveRecord
             [['password', 'level'], 'string'],
             [['username'], 'string', 'max' => 25],
             [['nama_petugas'], 'string', 'max' => 35],
+            [['instagram'], 'string', 'max' => 35],
+            [['whatsapp'], 'string'],
         ];
     }
 

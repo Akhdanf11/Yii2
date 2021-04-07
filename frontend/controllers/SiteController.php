@@ -1,7 +1,7 @@
 <?php
 namespace frontend\controllers;
 
-
+use backend\models\Petugas;
 use Yii;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -81,8 +81,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
-            return $this->render('index');
+            Petugas::find()->where(['level'=>'admin'])->one();
+            $social = Petugas::find()->where(['whatsapp'=>'089505707449'])->one();
+            return $this->render('index', [
+                'Social' => $social,
+            ]);
     }
 
     /**
@@ -150,7 +153,10 @@ class SiteController extends Controller
             $data->no_telp = Yii::$app->request->post('Personal')['no_telp'];
             // $data->img = Yii::$app->request->post('Personal')['img'];
             $data->save();
-            Yii::$app->session->setFlash('success', 'Profil Telah Diperbarui');
+            return $this->render('profil', [
+                'profil' => true,
+                'data' => $data,
+            ]);
         }
 
         $data = Personal::find()->where(["nisn" => Yii::$app->user->identity->nisn])->one();
@@ -182,16 +188,13 @@ class SiteController extends Controller
 
                 if(Yii::$app->getSecurity()->validatePassword(Yii::$app->request->post('PasswordReset')['password'],
                 $data['password'])){
-                    Yii::$app->session->setFlash('success', 'Password telah di Update');
-                    $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
-                    return $this->redirect(['site/account']);
-
-                    } else {
-
-                        Yii::$app->session->setFlash('Success', 'Password telah di Create');
                         $data->password = Yii::$app->security->generatePasswordHash(Yii::$app->request->post('PasswordReset')['password_2']);
                         $data->save();
-                        return $this->redirect(['site/account']);
+                        return $this->render('account',[
+                            'passwordupdate' => true,
+                            'data' => $data,
+                            'pass' => $password,
+                        ]);
 
                     }
                 } 
@@ -220,9 +223,9 @@ class SiteController extends Controller
             $data->nisn = Yii::$app->user->identity->nisn;
             $data->keluhan = Yii::$app->request->post("ContactForm")['body'];
             $data->save();
-            Yii::$app->session->setFlash('success', 'Keluhan Telah Dikkirim');
             return $this->render('contact', [
                 'model' => $model,
+                'createcontact' => true,
             ]);
         } else {
             return $this->render('contact', [

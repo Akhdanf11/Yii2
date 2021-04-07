@@ -139,6 +139,18 @@ class ActionController extends Controller
         }
     }
 
+    public function actionFormPembayaran()
+    {
+        // $model = new Spp;
+
+        // if (Yii::$app->request->post()) {
+        //     $model->nisn = Yii::$app->request->post("Spp")['nisn'];
+        //     $model->nominal = Yii::$app->request->post("Spp")['nominal'];
+        //     // $model->created_at = Yii::$app->request->post("Spp")['created_at'];
+        //     $model->save();
+        // }
+    }
+
     public function actionGetAllHistory()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

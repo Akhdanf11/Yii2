@@ -108,8 +108,7 @@ $this->title = 'Generate Laporan';
 <?php
 $this->registerJs('
     $(document).ready(function(){
-        $("#clearTable").slideUp();
-        $("#printPDF").slideUp();
+        
         function today() {
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, "0");
@@ -123,8 +122,6 @@ $this->registerJs('
         $("#clearTable").click(() => {
             $("#tbody").html("");
             $("#dateReport").html("");
-            $("#clearTable").slideUp();
-            $("#printPDF").slideUp();
         });
         $("#id-class").change(() => {
             getSiswa();
@@ -178,8 +175,6 @@ $this->registerJs('
                                 option.setAttribute("value", siswa.nisn);
                                 option.innerHTML = siswa.nama;
                                 document.querySelector("#nama-siswa").append(option);
-                                $("#clearTable").slideDown();
-                                $("#printPDF").slideDown();
                             });
                             $("#transaksi").slideDown();
                             $("#nama-siswa").removeAttr("disabled");
@@ -208,8 +203,6 @@ $this->registerJs('
                 processData: false,
                 contentType: false,
                 success : (data) => {
-                    $("#clearTable").slideDown();
-                    $("#printPDF").slideDown();
                     $("#tbody").html("");
                     let num = 1;
                     let total = 0;
@@ -264,8 +257,6 @@ $this->registerJs('
                 processData: false,
                 contentType: false,
                 success : (data) => {
-                    $("#clearTable").slideDown();
-                    $("#printPDF").slideDown();
                     $("#tbody").html("");
                     let num = 1;
                     let total = 0;

@@ -20,16 +20,13 @@ $this->title = 'Home';
 
         <div class="row">
 
-        <div class="col-lg-2"></div>
+        <div class="col-lg-3"></div>
 
             <div class="col-lg-3">
-                <h2><a href="https://api.whatsapp.com/send?phone=6289505707449" class="nav-link"><i class="fab fa-whatsapp-square"></i> Whatsapp &raquo; </a></h2>
+                <h2><a href="https://api.whatsapp.com/send?phone=<?= Yii::$app->user->identity->whatsapp?>" class="nav-link"><i class="fab fa-whatsapp-square"></i> Whatsapp &raquo; </a></h2>
             </div>
             <div class="col-lg-3">
-            <h2><a href="https://www.instagram.com/akhdanfa_11/" class="nav-link"><i class="fab fa-instagram-square"></i> Instagram &raquo; </a></h2>
-            </div>
-            <div class="col-lg-3">
-                <h2><a href="https://line.me/ti/p/sw1DVtsUgG" class="nav-link"><i class="fab fa-line"></i> Line &raquo; </a></h2>
+            <h2><a href="https://www.instagram.com/<?= Yii::$app->user->identity->instagram?>/" class="nav-link"><i class="fab fa-instagram-square"></i> Instagram &raquo; </a></h2>
             </div>
         </div>
 

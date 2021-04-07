@@ -30,7 +30,7 @@ class Spp extends \yii\db\ActiveRecord
         return [
             [['nisn', 'nominal'], 'required'],
             [['nisn', 'nominal'], 'integer'],
-            [['created_at'], 'safe'],
+            [['created_at'], 'date'],
         ];
     }
 
