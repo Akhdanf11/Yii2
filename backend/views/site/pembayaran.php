@@ -25,7 +25,7 @@ $this->title = 'Payment';
         </div>
 
         <div class="card-body">
-            <?php $form = ActiveForm::begin(['id' => 'form-pembayaran']); ?>
+            <?php $form = ActiveForm::begin(['id' => 'bio-form']); ?>
             <div class="row">
                 <div class="col-4">
                     <b class="mb-2 d-block">Kelas</b>
@@ -72,53 +72,26 @@ $this->title = 'Payment';
                     </div>
                 </div>
             </div>
-            </form>
 
             <div class="card-footer p-3 bg-primary">
                 <small class="text-light"><span id="month" class="text-light">0</span> Bulan</small>
                 <?= Html::submitButton('<i class="fas fa-check"></i>&nbsp;&nbsp;Bayar', ['class' => 'btn btn-light text-primary btn-sm ', 'id' => 'btn-pay', 'style' => 'float:right']) ?>
             </div>
             <?php ActiveForm::end(); ?>
+
         </div>
     </div>
 
-    <button id="clearTable" class="btn btn-danger btn-sm ml-3 p-sm-2"><i class="fas fa-eraser mr-2"></i>Empty Table</button>
-    <button id="printPDF" class="btn btn-sm btn-primary ml-4 p-sm-2"><i class="fas fa-print mr-2"></i>Print PDF</button>
 </div>
-<div class="row mt-sm-2">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
-    <page>
-        <div id="pdf-area" class="p-3">
-            <h4 class="text-center mb-4 mt-2 font-weight-bolder">Struk Pembayaran Sekolah <span id="dateReport"></span></h4>
-            <table class="table table-striped">
-                <tr class="bg-success text-white">
-                    <th>No.</th>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Jurusan</th>
-                    <th>Tanggal & Waktu</th>
-                    <th>Nominal</th>
-                </tr>
-
-                <tbody id="tbody" class="alert-info"></tbody>
-            </table>
-        </div>
-    </page>
-    </div>
-</div>
-
 
 <?php
 
 $this->registerJs('
     $(document).ready(function(){
-        
         let price = 135000;
         $("#transaksi").slideToggle();
         $("#nama-siswa").prop("disabled", "true");
         $("#btn-pay").prop("disabled", "true");
-
         $("#nominal").on("keyup", (event) => {
             if (parseInt($("#nominal").val()) < price) {
                 $("#exchange").val("0");
@@ -130,49 +103,12 @@ $this->registerJs('
                 $("#month").html(Math.floor(parseInt($("#nominal").val())/price));
             }
         });
-
-        function today() {
-            var today = new Date();
-            var dd = String(today.getDate()).padStart(2, "0");
-            var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-            var yyyy = today.getFullYear();
-            today = mm + "-" + dd + "-" + yyyy;
-            return today;
-        }
-
-        $("#clearTable").click(() => {
-            $("#tbody").html("");
-            $("#dateReport").html("");
-        });
-
         $("#id-class").change(() => {
             getSiswa();
         });
-
         $("#id-skill").change(() => {
             getSiswa();
         });
-
-        $("#btn-pay").click(() => {
-            btnPay();
-        });
-
-        $("#printPDF").click(() => {
-            printPDF("Laporan Pembayaran " + today());
-        });
-
-        function printPDF(name) {
-            const pdf = document.getElementById("pdf-area");
-            var opt = {
-                margin: 0,
-                filename: name + ".pdf",
-                image: { type: "JPEG", quality: 1 },
-                html2canvas: { scale: 1 },
-                jsPDF: { unit: "in", format: "a4", orientation: "portrait" }
-            };
-            html2pdf().from(pdf).set(opt).save();
-        }
-
         function getSiswa() {
             let formData = new FormData;
             formData.append("class", $("#id-class").val());
@@ -208,84 +144,16 @@ $this->registerJs('
                 }
             });
         }
-
-        function btnPay(){
-            let formData = new FormData;
-            formData.append("nisn", $("#nama-siswa").val());
-            formData.append("nominal", $("#nominal").val());
-                $.ajax({
-                    type : "POST",
-                    url: "index.php?r=action%2Fform-pembayaran",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function() {
-                        getSiswaData();
-                    }
-                });
-        }
-
-        function getSiswaData() {
-            let formData = new FormData;
-            formData.append("nisn", $("#nama-siswa").val());
-            $.ajax({
-                url : "index.php?r=action%2Fget-siswa-history",
-                type : "post",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success : (data) => {
-                    $("#tbody").html("");
-                    let num = 1;
-                    let total = 0;
-                    let nama;
-                    let alias;
-                    let kelas;
-                    if(!data.data) {
-                        alert("Data Tidak Ditemukan");
-                    } else {
-                        data.data.forEach((spp) => {
-                            nama = spp.nama;
-                            alias = spp.nama_jurusan;
-                            kelas = spp.nama_kelas;
-                            total += parseInt(spp.nominal);
-                            let tr = document.createElement("tr");
-                            let tdNum = document.createElement("td");
-                            tdNum.innerHTML = num;
-                            let tdNama = document.createElement("td");
-                            tdNama.innerHTML = spp.nama;
-                            let tdKelas = document.createElement("td");
-                            tdKelas.innerHTML = spp.nama_kelas;
-                            let tdSkill = document.createElement("td");
-                            tdSkill.innerHTML = spp.nama_jurusan;
-                            let tdDate = document.createElement("td");
-                            tdDate.innerHTML = spp.created_at;
-                            let tdNom = document.createElement("td");
-                            tdNom.innerHTML = "Rp." + number_format(spp.nominal);
-                            tr.append(tdNum);
-                            tr.append(tdNama);
-                            tr.append(tdKelas);
-                            tr.append(tdSkill);
-                            tr.append(tdDate);
-                            tr.append(tdNom);
-                            document.querySelector("#tbody").append(tr);
-                            num++;
-                        });
-                        let tr = document.createElement("tr");
-                        let tdJumlah = document.createElement("th");
-                        tdJumlah.innerHTML = "Jumlah";
-                        tdJumlah.setAttribute("colspan", "5");
-                        let tdTotal = document.createElement("th");
-                        tdTotal.innerHTML = "Rp." + number_format(total);
-                        tr.append(tdJumlah);
-                        tr.append(tdTotal);
-                        document.querySelector("#tbody").append(tr);
-                    }
-                    $("#dateReport").html(nama + " " + kelas + " " + alias);
-                }
-            });
-        }
     });', \yii\web\View::POS_READY);
 
 ?>
 
+<?php if (isset($payment)) {
+    $this->registerJs('
+    $(document).ready(function(){
+        setTimeout(() => {
+            $("#alert-payment").fadeOut();
+        }, 2000
+    );
+    });', \yii\web\View::POS_READY);
+} ?>

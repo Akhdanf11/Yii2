@@ -75,17 +75,17 @@ class SiteController extends Controller
     {
         $model = new Spp;
 
-        // if (Yii::$app->request->post()) {
-        //     $model->nisn = Yii::$app->request->post("nama-siswa");
-        //     $model->nominal = Yii::$app->request->post("Spp")['nominal'];
-        //     // $model->created_at = Yii::$app->request->post("Spp")['created_at'];
-        //     $model->save();
+        if (Yii::$app->request->post()) {
+            $model->nisn = Yii::$app->request->post("nama-siswa");
+            $model->nominal = Yii::$app->request->post("Spp")['nominal'];
+            // $model->created_at = Yii::$app->request->post("Spp")['created_at'];
+            $model->save();
             
-        //     return $this->render('pembayaran', [
-        //         'model' => $model,
-        //         'payment' => true
-        //     ]);
-        // }
+            return $this->render('struk-pembayaran', [
+                'model' => $model,
+                'payment' => true
+            ]);
+        }
 
         return $this->render('pembayaran', [
             'model' => $model

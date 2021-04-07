@@ -24,7 +24,7 @@ AppAsset::register($this);
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="<?= Yii::$app->homeUrl ?>">
+                <a class="nav-link" href="<?= Url::toRoute(['/site/index']); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
