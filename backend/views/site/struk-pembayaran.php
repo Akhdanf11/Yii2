@@ -1,5 +1,8 @@
 <?php
 use yii\helpers\Html;
+
+$this->title = 'Struk Pembayaran';
+
 ?>
 
 <?php if(isset($payment)): ?>
@@ -13,18 +16,19 @@ use yii\helpers\Html;
         <div id="pdf-area" class="p-3">
             <h4 class="text-center mb-4 mt-2 font-weight-bolder">Struk Pembayaran Sekolah <?= Html::encode($model->nisn) ?><span id="dateReport"></span></h4>
             <table class="table table-striped">
-                <tr class="bg-success text-white">
+                <tr class="bg-primary text-white">
                     <th>No.</th>
                     <th>NISN</th>
                     <th>Nominal</th>
                 </tr>
 
-                <tbody id="tbody" class="alert-info"></tbody>
+                <tbody id="tbody" class="alert-primary">
                 <tr>
                 <td>1</td>
                 <td><?= Html::encode($model->nisn) ?></td>
-                <td><?= Html::encode($model->nominal) ?></td>
+                <td> Rp. <?= Html::encode($model->nominal) ?></td>
                 </tr>
+                </tbody>
             </table>
         </div>
     </page>

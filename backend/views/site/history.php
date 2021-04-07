@@ -90,7 +90,7 @@ $this->title = 'Generate Laporan';
     <div id="pdf-area" class="p-3">
         <h4 class="text-center mb-4 mt-2 font-weight-bolder">Laporan Pembayaran Sekolah <span id="dateReport"></span></h4>
         <table class="table table-striped">
-            <tr class="bg-success text-white">
+            <tr class="bg-primary text-white">
                 <th>No.</th>
                 <th>Nama</th>
                 <th>Kelas</th>
@@ -99,7 +99,7 @@ $this->title = 'Generate Laporan';
                 <th>Nominal</th>
             </tr>
 
-            <tbody id="tbody" class="alert-info "></tbody>
+            <tbody id="tbody" class="alert-primary "></tbody>
         </table>
     </div>
 </page>
@@ -108,6 +108,9 @@ $this->title = 'Generate Laporan';
 <?php
 $this->registerJs('
     $(document).ready(function(){
+        $("#clearTable").slideUp();
+        $("#printPDF").slideUp();
+        $("#pdf-area").slideUp();
         
         function today() {
             var today = new Date();
@@ -122,6 +125,9 @@ $this->registerJs('
         $("#clearTable").click(() => {
             $("#tbody").html("");
             $("#dateReport").html("");
+            $("#clearTable").slideUp();
+            $("#printPDF").slideUp();
+            $("#pdf-area").slideUp();
         });
         $("#id-class").change(() => {
             getSiswa();
@@ -209,6 +215,9 @@ $this->registerJs('
                     if(!data.data) {
                         alert("Data Tidak Ditemukan");
                     } else {
+                        $("#clearTable").slideDown();
+                        $("#printPDF").slideDown();
+                        $("#pdf-area").slideDown();
                         console.log(data.data);
                         data.data.forEach((spp) => {
                             total += parseInt(spp.nominal);
@@ -263,6 +272,9 @@ $this->registerJs('
                     if(!data.data) {
                         alert("Data Tidak Ditemukan");
                     } else {
+                        $("#clearTable").slideDown();
+                        $("#printPDF").slideDown();
+                        $("#pdf-area").slideDown();
                         data.data.forEach((spp) => {
                             total += parseInt(spp.nominal);
                             let tr = document.createElement("tr");
@@ -321,6 +333,9 @@ $this->registerJs('
                         alert("Data Tidak Ditemukan");
                     } else {
                         data.data.forEach((spp) => {
+                            $("#clearTable").slideDown();
+                            $("#printPDF").slideDown();
+                            $("#pdf-area").slideDown();
                             nama = spp.nama;
                             alias = spp.nama_jurusan;
                             kelas = spp.nama_kelas;
